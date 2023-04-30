@@ -6,7 +6,7 @@ import secrets
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
-wlan.connect(ssid, password)
+wlan.connect(secrets.ssid, secrets.password)
 
 pinW = machine.Pin(2, machine.Pin.OUT)
 pinC = machine.Pin(15, machine.Pin.OUT)
