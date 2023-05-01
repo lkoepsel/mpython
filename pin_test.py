@@ -1,16 +1,58 @@
-# PinTest.py - interactive app to test pins on a board
+# pin_test.py - interactive app to test pins on a board
+# uses pin number (1-40) as the reference number
 import machine
 import time
 
+PicoW_pins = [[0, 'UART0 TX'],      # Pin 1
+              [0, 'UART0 RX'],
+              [0, 'GND'],
+              [1, 'GP2'],
+              [1, 'GP3'],
+              [1, 'GP4'],
+              [1, 'GP5'],
+              [0, 'GND'],
+              [1, 'GP6'],
+              [1, 'GP7'],         # Pin 10
+              [1, 'GP8'],
+              [1, 'GP9'],
+              [0, 'GND'],
+              [1, 'GP10'],
+              [1, 'GP11'],
+              [1, 'GP12'],
+              [1, 'GP13'],
+              [0, 'GND'],
+              [1, 'GP14'],
+              [1, 'GP15'],         # Pin 20
+              [1, 'GP16'],
+              [1, 'GP17'],
+              [0, 'GND'],
+              [1, 'GP18'],
+              [1, 'GP19'],
+              [1, 'GP20'],
+              [1, 'GP21'],
+              [0, 'GND'],
+              [1, 'GP22'],
+              [0, 'RUN'],         # Pin 30
+              [0, 'ADC0'],
+              [0, 'ADC1'],
+              [0, 'AGND'],
+              [0, 'ADC2'],
+              [0, 'ADC_REF'],
+              [0, '3V3(OUT)'],
+              [0, '3V3_EN'],
+              [0, 'GND'],
+              [0, 'VSYS'],
+              [0, 'VBUS']         # Pin 40
+              ]
 
 minTest = 1
 maxTest = 3
 
-maxPins = 29
+maxPins = 40
 
 
 def print_header():
-    print("Running Pin Test")
+    print("Running Pin Test:")
     print("""Tests: 0=> new pin 1=> High 2=> Low  3=> Blink once""")
 
 
@@ -50,16 +92,19 @@ def PinTest():
 
 
 def getPin():
-    pin = int(input("Enter pin to test: "))
+    pin = int(input("Enter pin number (1-40) to test: "))
     if (pin > maxPins):
         print("Error, pin requested", pin,
-              " > number of output pins:", maxPins)
+              " > number of board pins:", maxPins)
         pin = -1
     elif (pin < 0):
         print("Error, pin requested", pin, " < 0:")
         pin = -1
     else:
-        print(pin, " enabled as Output")
+        if PicoW_pins[pin][0]:
+            print(pin, PicoW_pins[pin][1], " enabled as Output")
+        else:
+            print(pin, PicoW_pins[pin][1], "is not a GPIO pin")
     return(pin)
 
 
