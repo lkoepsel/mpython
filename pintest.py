@@ -9,6 +9,46 @@ maxTest = 3
 maxPins = 29
 
 
+def print_header():
+    print("Running Pin Test")
+    print("""Tests: 0=> new pin 1=> High 2=> Low  3=> Blink once""")
+
+
+def PinTest():
+    startState = True
+    testState = True
+    print_header()
+
+    while startState:
+        pin = getPin()
+        if pin >= 0:
+            startState = False
+            pinT = machine.Pin(pin, machine.Pin.OUT)
+
+    while testState:
+        test = getTest()
+        if test >= 0:
+            if test == 0:
+                startState = True
+                testState = False
+
+            elif test == 1:  # 1 - set pin HIGH
+                runTest_1(pinT)
+                testState = True
+
+            elif test == 2:  # 1 - set pin LOW
+                runTest_2(pinT)
+                testState = True
+
+            elif test == 3:  # 1 - set pin to BLINK
+                runTest_3(pinT)
+                testState = True
+
+            else:  # print error, not a valid test number
+                print(test, "entered. Must be 0, 1, 2, or 3")
+                testState = True
+
+
 def getPin():
     pin = int(input("Enter pin to test: "))
     if (pin > maxPins):
@@ -58,42 +98,7 @@ def runTest_3(pin):
     blink(pin)
 
 
-def PinTest():
-    startState = True
-    testState = True
-    print("Running Pin Test")
-    print("""Tests: 0=> new pin 1=> High 2=> Low  3=> Blink once""")
-
-    while startState:
-        pin = getPin()
-        if pin >= 0:
-            startState = False
-            pinT = machine.Pin(pin, machine.Pin.OUT)
-
-    while testState:
-        test = getTest()
-        if test >= 0:
-            if test == 0:
-                startState = True
-                testState = False
-
-            elif test == 1:  # 1 - set pin HIGH
-                runTest_1(pinT)
-                testState = True
-
-            elif test == 2:  # 1 - set pin LOW
-                runTest_2(pinT)
-                testState = True
-
-            elif test == 3:  # 1 - set pin to BLINK
-                runTest_3(pinT)
-                testState = True
-
-            else:  # print error, not a valid test number
-                print(test, "entered. Must be 0, 1, 2, or 3")
-                testState = True
-
-
-if __name__ == '__main__':
-    while 1 == 1:
-        PinTest()
+# delay required for serial connection to start
+time.sleep_ms(1400)
+while True:
+    PinTest()
