@@ -1,44 +1,44 @@
 # wlan_v2 - wireless lan connection, use LEDs for status
 import time
 import network
-import machine
+from machine import Pin, Timer
 import secrets
 from microdot import Microdot
+
+
+wireless = Pin("LED", Pin.OUT)
+yellow = Pin(2, Pin.OUT)
+green = Pin(15, Pin.OUT)
+white = Pin(16, Pin.OUT)
+blue = Pin(22, Pin.OUT)
+
+
+def tick(timer):
+    global wireless
+    wireless.toggle()
 
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(secrets.ssid, secrets.password)
 
-wait = machine.Pin(2, machine.Pin.OUT)
-connected = machine.Pin(15, machine.Pin.OUT)
-server = machine.Pin(16, machine.Pin.OUT)
-# Indicate waiting to connect
-wait.value(1)
+blink = Timer()
 
 max_wait = 10
+blink.init(freq=4, mode=Timer.PERIODIC, callback=tick)
 while max_wait > 0:
     if wlan.status() < 0 or wlan.status() >= 3:
         break
     max_wait -= 1
-    time.sleep_ms(500)
-    wait.toggle()
-    time.sleep_ms(500)
-    wait.toggle()
+    time.sleep(1)
 
 
 # Handle connection error
 if wlan.status() != 3:
-    while True:
-        wait.toggle()
-        time.sleep_ms(50)
-        wait.toggle()
-        time.sleep_ms(50)
+    blink.init(freq=20, mode=Timer.PERIODIC, callback=tick)
 
 else:
-    wait.value(0)
-    connected.value(1)
-    status = wlan.ifconfig()
+    blink.deinit()
 
 
 app = Microdot()
@@ -46,8 +46,35 @@ app = Microdot()
 
 @app.route('/')
 def index(request):
-    server.value(1)
-    return 'Hello, world!'
+    return 'Hello from Pico W'
+
+
+@app.route('/white')
+def white_led(request):
+    global white
+    white.toggle()
+    return 'white LED will toggle'
+
+
+@app.route('/green')
+def green_led(request):
+    global green
+    green.toggle()
+    return 'green LED will toggle'
+
+
+@app.route('/yellow')
+def yellow_led(request):
+    global yellow
+    yellow.toggle()
+    return 'yellow LED will toggle'
+
+
+@app.route('/blue')
+def blue_led(request):
+    global blue
+    blue.toggle()
+    return 'blue LED will toggle'
 
 
 app.run()
