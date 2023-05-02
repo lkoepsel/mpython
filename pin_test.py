@@ -3,35 +3,36 @@
 import machine
 import time
 
-PicoW_pins = [[0, 'UART0 TX'],      # Pin 1
+PicoW_pins = [[0, 'Not a pin'],     # 0 Index, not a valid pin
+              [0, 'UART0 TX'],      # Pin 1
               [0, 'UART0 RX'],
               [0, 'GND'],
-              [1, 'GP2'],
-              [1, 'GP3'],
-              [1, 'GP4'],
-              [1, 'GP5'],
+              [2, 'GP2'],
+              [3, 'GP3'],
+              [4, 'GP4'],
+              [5, 'GP5'],
               [0, 'GND'],
-              [1, 'GP6'],
-              [1, 'GP7'],         # Pin 10
-              [1, 'GP8'],
-              [1, 'GP9'],
+              [6, 'GP6'],
+              [7, 'GP7'],         # Pin 10
+              [8, 'GP8'],
+              [9, 'GP9'],
               [0, 'GND'],
-              [1, 'GP10'],
-              [1, 'GP11'],
-              [1, 'GP12'],
-              [1, 'GP13'],
+              [10, 'GP10'],
+              [11, 'GP11'],
+              [12, 'GP12'],
+              [13, 'GP13'],
               [0, 'GND'],
-              [1, 'GP14'],
-              [1, 'GP15'],         # Pin 20
-              [1, 'GP16'],
-              [1, 'GP17'],
+              [14, 'GP14'],
+              [15, 'GP15'],         # Pin 20
+              [16, 'GP16'],
+              [17, 'GP17'],
               [0, 'GND'],
-              [1, 'GP18'],
-              [1, 'GP19'],
-              [1, 'GP20'],
-              [1, 'GP21'],
+              [18, 'GP18'],
+              [19, 'GP19'],
+              [20, 'GP20'],
+              [21, 'GP21'],
               [0, 'GND'],
-              [1, 'GP22'],
+              [22, 'GP22'],
               [0, 'RUN'],         # Pin 30
               [0, 'ADC0'],
               [0, 'ADC1'],
@@ -101,10 +102,12 @@ def getPin():
         print("Error, pin requested", pin, " < 0:")
         pin = -1
     else:
-        if PicoW_pins[pin][0]:
-            print(pin, PicoW_pins[pin][1], " enabled as Output")
+        if PicoW_pins[pin][0] == 0:
+            print('Pin', pin, PicoW_pins[pin][1], "is not a GPIO pin")
+            pin = -1
         else:
-            print(pin, PicoW_pins[pin][1], "is not a GPIO pin")
+            print('Pin', pin, PicoW_pins[pin][1], ' enabled as Output')
+            pin = PicoW_pins[pin][0]
     return(pin)
 
 
