@@ -1,5 +1,5 @@
 # pin_test.py - interactive app to test pins on a board
-# uses pin number (1-40) as the reference number
+# uses Pico W pin number (1-40) as the input
 import machine
 import time
 
