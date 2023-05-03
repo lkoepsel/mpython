@@ -3,7 +3,7 @@ import time
 import network
 from machine import Pin, Timer
 import secrets
-from microdot import Microdot
+from microdot import Microdot, send_file
 
 
 wireless = Pin("LED", Pin.OUT)
@@ -46,35 +46,78 @@ app = Microdot()
 
 @app.route('/')
 def index(request):
-    return 'Hello from Pico W'
+    return send_file('./index.html', max_age=3600)
 
 
-@app.route('/white')
-def white_led(request):
-    global white
-    white.toggle()
-    return 'white LED will toggle'
+@app.post('/')
+def index_post(request):
+    level = request.form.get('level')
+    led = request.form.get('led')
+    print("Set", led, "led", level)
+    return send_file('./index.html', max_age=3600)
 
 
-@app.route('/green')
-def green_led(request):
-    global green
-    green.toggle()
-    return 'green LED will toggle'
+@app.route('reset.css')
+def reset_css(request):
+    return send_file('./reset.css')
 
 
-@app.route('/yellow')
-def yellow_led(request):
-    global yellow
-    yellow.toggle()
-    return 'yellow LED will toggle'
+@app.route('style.css')
+def style_css(request):
+    return send_file('./style.css')
+
+
+@app.get('computer.svg')
+def computer_svg(request):
+    return send_file('./computer.svg', content_type='image/svg+xml')
+
+
+@app.get('blue.svg')
+def blue_svg(request):
+    return send_file('./blue.svg', content_type='image/svg+xml')
+
+
+@app.get('white.svg')
+def white_svg(request):
+    return send_file('./white.svg', content_type='image/svg+xml')
+
+
+@app.get('green.svg')
+def green_svg(request):
+    return send_file('./green.svg', content_type='image/svg+xml')
+
+
+@app.get('yellow.svg')
+def yellow_svg(request):
+    return send_file('./yellow.svg', content_type='image/svg+xml')
 
 
 @app.route('/blue')
 def blue_led(request):
     global blue
     blue.toggle()
-    return 'blue LED will toggle'
+    return send_file('./index.html', max_age=3600)
 
 
-app.run()
+@app.route('/white')
+def white_led(request):
+    global white
+    white.toggle()
+    return send_file('./index.html', max_age=3600)
+
+
+@app.route('/green')
+def green_led(request):
+    global green
+    green.toggle()
+    return send_file('./index.html', max_age=3600)
+
+
+@app.route('/yellow')
+def yellow_led(request):
+    global yellow
+    yellow.toggle()
+    return send_file('./index.html', max_age=3600)
+
+
+app.run(debug=True)

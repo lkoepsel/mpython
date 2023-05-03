@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="reset.css" rel="stylesheet" />
+    <title>Pico W</title>
+  </head>
+  <body>
+    <img src="computer.svg" alt="Pico W Icon" width="100" height="100" />
+    <h1>Pico W</h1>
+    <ul>
+      <li><a href="/blue"><img src="blue.svg" alt="blue LED" width="50" height="75" /></a></li>
+      <li><a href="/white"><img src="white.svg" alt="white LED" width="50" height="75"  /></a></li>
+      <li><a href="/green"><img src="green.svg" alt="green LED" width="50" height="75"  /></a></li>
+      <li><a href="/yellow"><img src="yellow.svg" alt="yellow LED" width="50" height="75"  /></a></li>
+    </ul>
+
+
+    <form method="POST">
+      <div>
+        <label for="led">Choose a led:</label>
+        <select id="led">
+            <option value="">--Please choose an option--</option>
+            <option value="blue">blue</option>
+            <option value="white">white</option>
+            <option value="yellow">yellow</option>
+            <option value="green">green</option>
+        </select>
+      </div>
+      <div>
+        <fieldset>
+            <legend>Select a level:</legend>
+
+            <div>
+              <input type="radio" id="HIGH" name="level" value="HIGH"
+                     checked>
+              <label for="HIGH">High</label>
+            </div>
+
+            <div>
+              <input type="radio" id="LOW" name="level" value="LOW">
+              <label for="LOW">Low</label>
+            </div>
+        </fieldset>
+      </div>
+      <div>
+        <button>Set LED</button>
+      </div>
+    </form>
+
+  </body>
+</html>
