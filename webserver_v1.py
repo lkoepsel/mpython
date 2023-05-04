@@ -51,8 +51,8 @@ def index(request):
 
 @app.post('/')
 def index_post(request):
-    level = request.form.get('level')
-    led = request.form.get('led')
+    level = request.form['level']
+    led = request.form['led']
     print("Set", led, "led", level)
     return send_file('./index.html', max_age=3600)
 
@@ -62,9 +62,19 @@ def reset_css(request):
     return send_file('./reset.css')
 
 
+@app.route('bulma.min.css')
+def bulma(request):
+    return send_file('./bulma.min.css')
+
+
 @app.route('style.css')
 def style_css(request):
     return send_file('./style.css')
+
+
+@app.get('favicon.png')
+def favicon(request):
+    return send_file('./favicon.png', content_type='image/png')
 
 
 @app.get('computer.svg')
