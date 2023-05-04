@@ -7,49 +7,79 @@
     <link rel="stylesheet" href="bulma.min.css">
   </head>
   <body>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">Pico W</h1>
-        <img src="computer.svg" alt="Pico W Icon" width="100" height="100" />
-        <ul>
-          <li><a href="/blue"><img src="blue.svg" alt="blue LED" width="50" height="75" /></a></li>
-          <li><a href="/white"><img src="white.svg" alt="white LED" width="50" height="75"  /></a></li>
-          <li><a href="/green"><img src="green.svg" alt="green LED" width="50" height="75"  /></a></li>
-          <li><a href="/yellow"><img src="yellow.svg" alt="yellow LED" width="50" height="75"  /></a></li>
-        </ul>
+    <div class="container is-fluid is-mobile is-centered">
+      <section class="columns ">
+        <div class="column"></div>
 
+          <div class="column is-three-fifths">
 
-        <form action="" method="POST">
-          <div>
-            <label for="led">Choose a led:</label>
-            <select id="led" name="led">
-                <option value="">--Please choose an option--</option>
-                <option value="blue">blue</option>
-                <option value="white">white</option>
-                <option value="yellow">yellow</option>
-                <option value="green">green</option>
-            </select>
-          </div>
-          <div>
-            <fieldset>
-                <legend>Select a level:</legend>
+            <div class="level">
+              <div class="level-item has-text-centered">
+                <figure class="image is-128x128">
+                  <img src="computer.svg" alt="Pico W Icon" />
+                </figure>
+              </div>
+            </div>
 
-                <div>
-                  <input type="radio" id="HIGH" name="level" value="HIGH"
-                         checked>
-                  <label for="HIGH">High</label>
+            <form action="" method="POST">
+
+          <div class="field is-hortizontal is-grouped">
+            <div class="field-label">
+              <label class="label">Choose LED:</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <label class="radio">
+                    <input type="radio" name="led" value="YELLOW">
+                    YELLOW
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="led" value="GREEN">
+                    GREEN
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="led" value="WHITE">
+                    WHITE
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="led" value="BLUE">
+                    BLUE
+                  </label>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <div>
-                  <input type="radio" id="LOW" name="level" value="LOW">
-                  <label for="LOW">Low</label>
-                </div>
-            </fieldset>
+          <div class="field is-hortizontal is-grouped">
+            <div class="field-label">
+              <label class="label">Choose Level:</label>
+            </div>
+            <div class="field-body">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" name="level" value="1">
+                  ON
+                </label>
+                <label class="radio">
+                  <input type="radio" name="level" value="0">
+                  OFF
+                </label>
+              </div>
+            </div>
           </div>
-          <div>
-            <input type="submit" value="Lights!">
+          <div class="control">
+            <input class="button is-primary" type="submit" value="Lights!">
           </div>
+
+        </div>
+
+        <div class="column"></div>
+
+        </section>
+
         </form>
+    </div>
 
   </body>
 </html>

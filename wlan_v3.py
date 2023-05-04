@@ -36,5 +36,4 @@ else:
     blink.deinit()
     status = wlan.ifconfig()
     print('ip = ' + status[0])
-    status = wlan.ifconfig()
     sys.exit()

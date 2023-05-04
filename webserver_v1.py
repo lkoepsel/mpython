@@ -18,6 +18,17 @@ def tick(timer):
     wireless.toggle()
 
 
+def set_led(color, level):
+    if color == 'WHITE':
+        white.value(int(level))
+    if color == 'GREEN':
+        green.value(int(level))
+    if color == 'BLUE':
+        blue.value(int(level))
+    if color == 'YELLOW':
+        yellow.value(int(level))
+
+
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(secrets.ssid, secrets.password)
@@ -39,6 +50,8 @@ if wlan.status() != 3:
 
 else:
     blink.deinit()
+    status = wlan.ifconfig()
+    print('ip = ' + status[0])
 
 
 app = Microdot()
@@ -46,7 +59,7 @@ app = Microdot()
 
 @app.route('/')
 def index(request):
-    return send_file('./index.html', max_age=3600)
+    return send_file('./index.html')
 
 
 @app.post('/')
@@ -54,22 +67,13 @@ def index_post(request):
     level = request.form['level']
     led = request.form['led']
     print("Set", led, "led", level)
-    return send_file('./index.html', max_age=3600)
-
-
-@app.route('reset.css')
-def reset_css(request):
-    return send_file('./reset.css')
+    set_led(led, level)
+    return send_file('./index.html')
 
 
 @app.route('bulma.min.css')
 def bulma(request):
     return send_file('./bulma.min.css')
-
-
-@app.route('style.css')
-def style_css(request):
-    return send_file('./style.css')
 
 
 @app.get('favicon.png')
@@ -106,28 +110,28 @@ def yellow_svg(request):
 def blue_led(request):
     global blue
     blue.toggle()
-    return send_file('./index.html', max_age=3600)
+    return send_file('./index.html')
 
 
 @app.route('/white')
 def white_led(request):
     global white
     white.toggle()
-    return send_file('./index.html', max_age=3600)
+    return send_file('./index.html')
 
 
 @app.route('/green')
 def green_led(request):
     global green
     green.toggle()
-    return send_file('./index.html', max_age=3600)
+    return send_file('./index.html')
 
 
 @app.route('/yellow')
 def yellow_led(request):
     global yellow
     yellow.toggle()
-    return send_file('./index.html', max_age=3600)
+    return send_file('./index.html')
 
 
 app.run(debug=True)
