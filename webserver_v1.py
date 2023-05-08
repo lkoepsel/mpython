@@ -73,7 +73,7 @@ def index_post(request):
 
 @app.route('bulma.min.css')
 def bulma(request):
-    return send_file('./bulma.min.css')
+    return send_file('./bulma.min.css', max_age=31536000)
 
 
 @app.get('favicon.png')
@@ -83,55 +83,8 @@ def favicon(request):
 
 @app.get('computer.svg')
 def computer_svg(request):
-    return send_file('./computer.svg', content_type='image/svg+xml')
-
-
-@app.get('blue.svg')
-def blue_svg(request):
-    return send_file('./blue.svg', content_type='image/svg+xml')
-
-
-@app.get('white.svg')
-def white_svg(request):
-    return send_file('./white.svg', content_type='image/svg+xml')
-
-
-@app.get('green.svg')
-def green_svg(request):
-    return send_file('./green.svg', content_type='image/svg+xml')
-
-
-@app.get('yellow.svg')
-def yellow_svg(request):
-    return send_file('./yellow.svg', content_type='image/svg+xml')
-
-
-@app.route('/blue')
-def blue_led(request):
-    global blue
-    blue.toggle()
-    return send_file('./index.html')
-
-
-@app.route('/white')
-def white_led(request):
-    global white
-    white.toggle()
-    return send_file('./index.html')
-
-
-@app.route('/green')
-def green_led(request):
-    global green
-    green.toggle()
-    return send_file('./index.html')
-
-
-@app.route('/yellow')
-def yellow_led(request):
-    global yellow
-    yellow.toggle()
-    return send_file('./index.html')
+    return send_file('./computer.svg',
+                     content_type='image/svg+xml', max_age=31536000)
 
 
 app.run(debug=True)
