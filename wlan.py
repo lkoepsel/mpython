@@ -62,7 +62,6 @@ def connect():
         blink.deinit()
         status = wlan.ifconfig()
         MAC = ubinascii.hexlify(network.WLAN().config('mac'), ':').decode()
-        print(f"{wlan.config()}")
         print(f"Name: {config.name}")
         print(f"IP Address: {status[0]}")
         print(f"MAC Address: {MAC}")
