@@ -147,6 +147,6 @@ def runTest_3(pin):
 
 
 # delay required for serial connection to start
-time.sleep_ms(1400)
+time.sleep_ms(1500)
 while True:
     PinTest()

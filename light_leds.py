@@ -1,21 +1,13 @@
-# wlan_v2 - wireless lan connection, use LEDs for status
-import time
-import network
-from machine import Pin, Timer
-import secrets
+# light_leds - browser-based method of controlling leds
+from machine import Pin
 from microdot import Microdot, send_file
+import sys
 
 
-wireless = Pin("LED", Pin.OUT)
 yellow = Pin(2, Pin.OUT)
 green = Pin(15, Pin.OUT)
 white = Pin(16, Pin.OUT)
 blue = Pin(22, Pin.OUT)
-
-
-def tick(timer):
-    global wireless
-    wireless.toggle()
 
 
 def set_led(color, level):
@@ -29,29 +21,13 @@ def set_led(color, level):
         yellow.value(int(level))
 
 
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-wlan.connect(secrets.ssid, secrets.password)
-
-blink = Timer()
-
-max_wait = 10
-blink.init(freq=4, mode=Timer.PERIODIC, callback=tick)
-while max_wait > 0:
-    if wlan.status() < 0 or wlan.status() >= 3:
-        break
-    max_wait -= 1
-    time.sleep(1)
-
-
-# Handle connection error
-if wlan.status() != 3:
-    blink.init(freq=20, mode=Timer.PERIODIC, callback=tick)
-
-else:
-    blink.deinit()
-    status = wlan.ifconfig()
-    print('ip = ' + status[0])
+# Required for WLAN on Pico W, 'machine' indicates Pico-based micropython
+# Will not differeniate between Pico and Pico W!
+if hasattr(sys.implementation, '_machine'):
+    from wlan import connect
+    if not (connect()):
+        print(f"wireless connection failed")
+        sys.exit()
 
 
 app = Microdot()
