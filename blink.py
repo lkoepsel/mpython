@@ -1,8 +1,14 @@
 from machine import Pin
 import time
 
-pin_led = Pin(15, Pin.OUT)
 
-while True:
-    pin_led.toggle()
-    time.sleep_ms(250)
+def Blink():
+    led = Pin("LED", Pin.OUT)
+
+    while True:
+        led.toggle()
+        time.sleep_ms(250)
+
+
+if __name__ == '__main__':
+    Blink()
