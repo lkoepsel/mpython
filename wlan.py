@@ -1,4 +1,4 @@
-# wlan - provides a wireless connection either as main or a function
+# wlan - provides a wireless connection either as program or a function
 import time
 import network
 from machine import Pin, Timer
@@ -7,9 +7,7 @@ import config
 import ubinascii
 
 
-wireless = Pin("LED", Pin.OUT)
-# provide an indication as to why the connection failed
-# Connecting to the Internet with Raspberry Pi Pico W
+# from "Connecting to the Internet with Raspberry Pi Pico W" Rasperry Pi Press
 # 3.6.1. Connection status codes
 STATUS = ['LINK_BADAUTH',
           'LINK_NONET',
@@ -20,20 +18,29 @@ STATUS = ['LINK_BADAUTH',
           'LINK_UP']
 
 
+# provide an indication as to why the connection failed
+# Use built-in LED to show status
+wireless = Pin("LED", Pin.OUT)
+
+
 # simple timer function to blink builtin LED showing wireless status
 # slow blink - attempting to connect
 # fast blink - connection failed
-# off - connection made
+# off - connection success
 def tick(timer):
     global wireless
     wireless.toggle()
 
 
-# function to call to connect to wireless
+# Use this function to connect to wireless
+# Returns true if successful wireless connection
+# Prints Board name, IP, MAC, Channel, TX Power, and SSID
 def connect():
     global STATUS
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
+
+    # make sure file on Pico secrets.py contains SSID and password
     wlan.connect(secrets.ssid, secrets.password)
 
     # toggle power mode to increase responsiveness
