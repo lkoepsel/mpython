@@ -1,0 +1,10 @@
+# use to upload light_leds webserver
+computer.svg
+config.py
+favicon.png
+index.html
++light_leds.py 
+microdot.py
+pico.min.css
+secrets.py
+wlan.py

@@ -47,9 +47,9 @@ def index_post(request):
     return send_file('./index.html')
 
 
-@app.route('bulma.min.css')
+@app.route('pico.min.css')
 def bulma(request):
-    return send_file('./bulma.min.css', max_age=31536000)
+    return send_file('./pico.min.css', max_age=31536000)
 
 
 @app.get('favicon.png')
