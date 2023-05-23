@@ -1,3 +1,4 @@
+# blink - will block blink built-in led and will check serial input to stop
 from machine import Pin
 import time
 import sys
@@ -20,6 +21,8 @@ def Blink():
         led.toggle()
         time.sleep_ms(500)
         key = read1()
+    led.value(0)
+    return
 
 
 if __name__ == '__main__':
