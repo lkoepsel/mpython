@@ -63,4 +63,4 @@ def computer_svg(request):
                      content_type='image/svg+xml', max_age=31536000)
 
 
-app.run(debug=True)
+app.run(port=5001, debug=True)
