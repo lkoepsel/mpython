@@ -25,3 +25,4 @@ bloom.yaml
 secrets.*
 __pycache__/*
 __pycache__/
+*.uf2
