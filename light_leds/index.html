@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pico W</title>
+    <link href="pico.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <header>
+        <figure>
+          <img src="computer.svg" alt="Pico W Icon" height="400" width="300"></img>
+        </figure>
+      </header>
+      <form action="" method="POST">
+
+        <fieldset>
+          <legend><strong>Choose LED:</strong></legend>
+          <label for="yellow">
+            <input type="radio" name="led" value="YELLOW">
+            YELLOW
+          </label>
+          <label for="green">
+            <input type="radio" name="led" value="GREEN">
+            GREEN
+          </label>
+          <label for="white">
+            <input type="radio" name="led" value="WHITE">
+            WHITE
+          </label>
+          <label for="blue">
+            <input type="radio" name="led" value="BLUE">
+            BLUE
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend><strong>Choose Level:</strong></legend>
+          <label for="on">
+            <input type="radio" name="level" value="1">
+            ON
+          </label>
+          <label for="off">
+            <input type="radio" name="level" value="0">
+            OFF
+          </label>
+        </fieldset>
+        <input type="submit" value="Lights!">
+      </form>
+  </body>
+</html>

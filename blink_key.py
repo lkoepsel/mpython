@@ -1,4 +1,4 @@
-# blink - will block blink built-in led and will check serial input to stop
+# blink_key - a blocking blink for built-in led and will stop on any key press
 from machine import Pin
 import time
 import sys

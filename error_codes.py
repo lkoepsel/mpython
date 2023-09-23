@@ -1,4 +1,4 @@
-# Prints known error codes
+# Prints known error codes for MicroPython
 import os
 import errno
 
