@@ -1,1 +1,0 @@
-name = 'Pico W B'
