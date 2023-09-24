@@ -234,12 +234,12 @@ man = Man()
 pwd = PWD()
 ls = LS()
 clear = CLEAR()
-du = DISK_USAGE()
-tree = TREE()
 
 cd = os.chdir
 mkdir = os.mkdir
 mv = os.rename
 rmdir = os.rmdir
+du = DISK_USAGE()
+tree = TREE()
 
 print(man)
