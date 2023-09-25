@@ -53,7 +53,7 @@ maxPins = 40
 
 
 def print_header():
-    print("Running Pin Test:")
+    print("Running Pico Pin Test:")
     print("""Tests: 0=> new pin 1=> High 2=> Low  3=> Blink once""")
 
 
