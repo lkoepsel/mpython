@@ -21,10 +21,10 @@ def show_key():
 
 
 if __name__ == '__main__':
-    time.sleep(2)
+    time.sleep(1)
     i = 0
     while i < 5:
-        print(f"Press any key: ", end='')
+        print(f"Press a key: ", end='')
         show_key()
         i += 1
     sys.exit()
