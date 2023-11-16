@@ -19,7 +19,7 @@ def Blink():
 
     while key is None:
         led.toggle()
-        time.sleep_ms(500)
+        time.sleep_ms(1000)
         key = read1()
     led.value(0)
     return

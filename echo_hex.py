@@ -27,4 +27,5 @@ if __name__ == '__main__':
         print(f"Press a key: ", end='')
         show_key()
         i += 1
+    print(f"Returning to system prompt")
     sys.exit()
