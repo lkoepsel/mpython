@@ -26,3 +26,5 @@ secrets.*
 __pycache__/*
 __pycache__/
 *.uf2
+*.stc
+*.mpy
