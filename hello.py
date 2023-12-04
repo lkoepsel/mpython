@@ -6,7 +6,7 @@ import time
 def Hello():
     i = 0
     while i < 100:
-        print(f"{i*10}ms Hello, World!")
+        print(f"{i * 10}ms Hello, World!")
         time.sleep_ms(10)
         i += 1
 

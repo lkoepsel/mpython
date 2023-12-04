@@ -1,4 +1,4 @@
-# echo_hex - print the hex equivilient of key pressed
+# echo_hex - print the hex equivalent of key pressed
 import sys
 import time
 import uselect
