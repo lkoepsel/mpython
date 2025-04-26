@@ -81,7 +81,7 @@ def decode_bootsec(b):
 
 def main():
     time.sleep(2)
-    print(f"Attempting to determine filesystem")
+    print("Attempting to determine filesystem")
     if sys.platform == 'pyboard':
         import pyb
         # sd = pyb.SDCard()

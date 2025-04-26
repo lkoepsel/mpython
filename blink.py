@@ -11,5 +11,5 @@ def Blink():
         time.sleep_ms(250)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Blink()
